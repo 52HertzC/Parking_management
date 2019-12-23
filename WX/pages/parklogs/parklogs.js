@@ -9,7 +9,13 @@ Page({
     indatetime:[],
     parkingRecord: [{ recEntryDate:""}],
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    isInput:false,
+    record:{},
+    datetime:"",
+    nowdatetime:"",
+    recCost:"",
+    timer:""
   },
   showInput: function () {
     this.setData({
@@ -33,11 +39,33 @@ Page({
       inputVal: e.detail.value
     });
   },
+  startReportHeart:function() {
+    var that = this;
+    var timerTem = setTimeout(function () {  //要延时执行的代码
+      that.startReportHeart()
+      var newdate = new Date();
+      var nowdatetime = util.formatTimeTwo(newdate, 'Y-M-D h:m:s');
+      var datetime = that.data.datetime;
+      var recTime = util.formatTimeDate(nowdatetime, datetime);
+      var recCost = recTime * 2;
+      that.setData({
+        nowdatetime: nowdatetime,
+        recCost: recCost
+      })
+    }, 1000)
+    // 保存定时器name
+    getApp().globalData.timer= timerTem  
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
     var that=this;
+    that.setData({
+      isInput: getApp().globalData.isInput
+    })
     wx.request({
 
       url: getApp().globalData.url+'/Parking_management/record/carlist.action',
@@ -62,6 +90,28 @@ Page({
         
       }
     })
+
+    wx.request({
+      url: getApp().globalData.url + '/Parking_management/record/dateisnull.action?',
+      data: { 'recCarId': getApp().globalData.sessionCarId },
+      success: function (res) {
+        console.log(res)
+        if (res.data.rows[0] != undefined) {
+          var timestamp = res.data.rows[0].recEntryDate;
+          var indate = util.formatTimeTwo(timestamp, 'Y-M-D');
+          var intime = util.formatTimeTwo(timestamp, 'h:m:s');
+          var datetime = indate + " " + intime;
+          that.setData({
+            record: res.data.rows[0],
+            datetime: datetime,
+            isInput:true
+          })
+          
+        }
+      }
+    })
+    that.startReportHeart();
+   
   },
 
   /**

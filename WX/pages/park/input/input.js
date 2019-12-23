@@ -55,6 +55,7 @@ Page({
               //res.data就是后端返回的数据，转成了对象，可以直接遍历
               //把res.data放入data中
               if (res.data.status == 200) {
+                getApp().globalData.isInput = true;
                 wx.request({
                   url: getApp().globalData.url + "/Parking_management/res/wxcarlist.action",
                   data: {
@@ -71,6 +72,7 @@ Page({
                       success: function(res) {
                           console.log(res)
                           if (res.data.status == 200) {
+                            
                             wx.showToast({
                               title: '停车成功',
                               icon: 'success',
@@ -79,7 +81,7 @@ Page({
                                 setTimeout(function() {
                                   //要延时执行的代码
                                   wx.switchTab({
-                                    url: '../park',
+                                    url: '/pages/parklogs/parklogs',
                                     success: function() {
                                       var page = getCurrentPages().pop();
                                       if (page == undefined || page == null) return;
@@ -109,7 +111,7 @@ Page({
                           setTimeout(function () {
                             //要延时执行的代码
                             wx.switchTab({
-                              url: '../park',
+                              url: '/pages/parklogs/parklogs',
                               success: function () {
                                 var page = getCurrentPages().pop();
                                 if (page == undefined || page == null) return;

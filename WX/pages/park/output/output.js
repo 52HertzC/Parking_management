@@ -49,6 +49,7 @@ Page({
               //res.data就是后端返回的数据，转成了对象，可以直接遍历
               //把res.data放入data中
               if (res.data.status == 200) {
+                getApp().globalData.isInput=false;
                 wx.showToast({
                   title: '缴费成功',
                   icon: 'success',
@@ -150,7 +151,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**

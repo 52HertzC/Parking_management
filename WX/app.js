@@ -45,6 +45,8 @@ App({
     url: 'http://49.234.7.23:8080',//云服务器
     urls:'http://localhost:8888',
     sessionId:'',
-    sessionCarId:''
+    sessionCarId:'',
+    isInput: false,  //判断是否停车
+    timer:''
   }
 })
