@@ -11,4 +11,4 @@
 ![image](https://github.com/52HertzC/Parking_management/blob/master/images/首页.jpg)<br>
 ![image](https://github.com/52HertzC/Parking_management/blob/master/images/个人中心.jpg)<br>
 ![image](https://github.com/52HertzC/Parking_management/blob/master/images/停车记录.jpg)
-<img src="https://github.com/52HertzC/Parking_management/blob/master/images/停车记录.jpg"   width="250" height="140">
+<img src="https://github.com/52HertzC/Parking_management/blob/master/images/停车记录.jpg"   width="400" >
