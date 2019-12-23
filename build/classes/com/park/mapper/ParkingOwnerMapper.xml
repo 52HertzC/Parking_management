@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.park.mapper.ParkingOwnerMapper" >
+  <resultMap id="BaseResultMap" type="com.park.bean.ParkingOwner" >
+    <id column="own_id" property="ownId" jdbcType="BIGINT" />
+    <result column="car_id" property="carId" jdbcType="VARCHAR" />
+    <result column="car_sta_id" property="carStaId" jdbcType="VARCHAR" />
+    <result column="car_name" property="carName" jdbcType="VARCHAR" />
+    <result column="car_site" property="carSite" jdbcType="VARCHAR" />
+    <result column="car_age" property="carAge" jdbcType="VARCHAR" />
+    <result column="car_phone" property="carPhone" jdbcType="VARCHAR" />
+    <result column="car_color" property="carColor" jdbcType="VARCHAR" />
+    <result column="car_money" property="carMoney" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    own_id, car_id, car_sta_id, car_name, car_site, car_age, car_phone, car_color, car_money
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.park.bean.ParkingOwnerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parking_owner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from parking_owner
+    where own_id = #{ownId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from parking_owner
+    where own_id = #{ownId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.park.bean.ParkingOwnerExample" >
+    delete from parking_owner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.park.bean.ParkingOwner" >
+    insert into parking_owner (own_id, car_id, car_sta_id, 
+      car_name, car_site, car_age, 
+      car_phone, car_color, car_money
+      )
+    values (#{ownId,jdbcType=BIGINT}, #{carId,jdbcType=VARCHAR}, #{carStaId,jdbcType=VARCHAR}, 
+      #{carName,jdbcType=VARCHAR}, #{carSite,jdbcType=VARCHAR}, #{carAge,jdbcType=VARCHAR}, 
+      #{carPhone,jdbcType=VARCHAR}, #{carColor,jdbcType=VARCHAR}, #{carMoney,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.park.bean.ParkingOwner" >
+    insert into parking_owner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ownId != null" >
+        own_id,
+      </if>
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="carStaId != null" >
+        car_sta_id,
+      </if>
+      <if test="carName != null" >
+        car_name,
+      </if>
+      <if test="carSite != null" >
+        car_site,
+      </if>
+      <if test="carAge != null" >
+        car_age,
+      </if>
+      <if test="carPhone != null" >
+        car_phone,
+      </if>
+      <if test="carColor != null" >
+        car_color,
+      </if>
+      <if test="carMoney != null" >
+        car_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ownId != null" >
+        #{ownId,jdbcType=BIGINT},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="carStaId != null" >
+        #{carStaId,jdbcType=VARCHAR},
+      </if>
+      <if test="carName != null" >
+        #{carName,jdbcType=VARCHAR},
+      </if>
+      <if test="carSite != null" >
+        #{carSite,jdbcType=VARCHAR},
+      </if>
+      <if test="carAge != null" >
+        #{carAge,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhone != null" >
+        #{carPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null" >
+        #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carMoney != null" >
+        #{carMoney,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.park.bean.ParkingOwnerExample" resultType="java.lang.Integer" >
+    select count(*) from parking_owner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update parking_owner
+    <set >
+      <if test="record.ownId != null" >
+        own_id = #{record.ownId,jdbcType=BIGINT},
+      </if>
+      <if test="record.carId != null" >
+        car_id = #{record.carId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carStaId != null" >
+        car_sta_id = #{record.carStaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carName != null" >
+        car_name = #{record.carName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSite != null" >
+        car_site = #{record.carSite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carAge != null" >
+        car_age = #{record.carAge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carPhone != null" >
+        car_phone = #{record.carPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carColor != null" >
+        car_color = #{record.carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carMoney != null" >
+        car_money = #{record.carMoney,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update parking_owner
+    set own_id = #{record.ownId,jdbcType=BIGINT},
+      car_id = #{record.carId,jdbcType=VARCHAR},
+      car_sta_id = #{record.carStaId,jdbcType=VARCHAR},
+      car_name = #{record.carName,jdbcType=VARCHAR},
+      car_site = #{record.carSite,jdbcType=VARCHAR},
+      car_age = #{record.carAge,jdbcType=VARCHAR},
+      car_phone = #{record.carPhone,jdbcType=VARCHAR},
+      car_color = #{record.carColor,jdbcType=VARCHAR},
+      car_money = #{record.carMoney,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.park.bean.ParkingOwner" >
+    update parking_owner
+    <set >
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=VARCHAR},
+      </if>
+      <if test="carStaId != null" >
+        car_sta_id = #{carStaId,jdbcType=VARCHAR},
+      </if>
+      <if test="carName != null" >
+        car_name = #{carName,jdbcType=VARCHAR},
+      </if>
+      <if test="carSite != null" >
+        car_site = #{carSite,jdbcType=VARCHAR},
+      </if>
+      <if test="carAge != null" >
+        car_age = #{carAge,jdbcType=VARCHAR},
+      </if>
+      <if test="carPhone != null" >
+        car_phone = #{carPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="carColor != null" >
+        car_color = #{carColor,jdbcType=VARCHAR},
+      </if>
+      <if test="carMoney != null" >
+        car_money = #{carMoney,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where own_id = #{ownId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.park.bean.ParkingOwner" >
+    update parking_owner
+    set car_id = #{carId,jdbcType=VARCHAR},
+      car_sta_id = #{carStaId,jdbcType=VARCHAR},
+      car_name = #{carName,jdbcType=VARCHAR},
+      car_site = #{carSite,jdbcType=VARCHAR},
+      car_age = #{carAge,jdbcType=VARCHAR},
+      car_phone = #{carPhone,jdbcType=VARCHAR},
+      car_color = #{carColor,jdbcType=VARCHAR},
+      car_money = #{carMoney,jdbcType=VARCHAR}
+    where own_id = #{ownId,jdbcType=BIGINT}
+  </update>
+</mapper>

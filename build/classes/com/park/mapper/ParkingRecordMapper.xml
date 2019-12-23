@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.park.mapper.ParkingRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.park.bean.ParkingRecord" >
+    <id column="rec_id" property="recId" jdbcType="BIGINT" />
+    <result column="rec_car_id" property="recCarId" jdbcType="VARCHAR" />
+    <result column="rec_entry_date" property="recEntryDate" jdbcType="TIMESTAMP" />
+    <result column="rec_leave_date" property="recLeaveDate" jdbcType="TIMESTAMP" />
+    <result column="rec_time" property="recTime" jdbcType="BIGINT" />
+    <result column="rec_charge" property="recCharge" jdbcType="VARCHAR" />
+    <result column="rec_cost" property="recCost" jdbcType="VARCHAR" />
+    <result column="rec_own_id" property="recOwnId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rec_id, rec_car_id, rec_entry_date, rec_leave_date, rec_time, rec_charge, rec_cost, 
+    rec_own_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.park.bean.ParkingRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parking_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from parking_record
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from parking_record
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.park.bean.ParkingRecordExample" >
+    delete from parking_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.park.bean.ParkingRecord" >
+    insert into parking_record (rec_id, rec_car_id, rec_entry_date, 
+      rec_leave_date, rec_time, rec_charge, 
+      rec_cost, rec_own_id)
+    values (#{recId,jdbcType=BIGINT}, #{recCarId,jdbcType=VARCHAR}, #{recEntryDate,jdbcType=TIMESTAMP}, 
+      #{recLeaveDate,jdbcType=TIMESTAMP}, #{recTime,jdbcType=BIGINT}, #{recCharge,jdbcType=VARCHAR}, 
+      #{recCost,jdbcType=VARCHAR}, #{recOwnId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.park.bean.ParkingRecord" >
+    insert into parking_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        rec_id,
+      </if>
+      <if test="recCarId != null" >
+        rec_car_id,
+      </if>
+      <if test="recEntryDate != null" >
+        rec_entry_date,
+      </if>
+      <if test="recLeaveDate != null" >
+        rec_leave_date,
+      </if>
+      <if test="recTime != null" >
+        rec_time,
+      </if>
+      <if test="recCharge != null" >
+        rec_charge,
+      </if>
+      <if test="recCost != null" >
+        rec_cost,
+      </if>
+      <if test="recOwnId != null" >
+        rec_own_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recId != null" >
+        #{recId,jdbcType=BIGINT},
+      </if>
+      <if test="recCarId != null" >
+        #{recCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="recEntryDate != null" >
+        #{recEntryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recLeaveDate != null" >
+        #{recLeaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recTime != null" >
+        #{recTime,jdbcType=BIGINT},
+      </if>
+      <if test="recCharge != null" >
+        #{recCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="recCost != null" >
+        #{recCost,jdbcType=VARCHAR},
+      </if>
+      <if test="recOwnId != null" >
+        #{recOwnId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.park.bean.ParkingRecordExample" resultType="java.lang.Integer" >
+    select count(*) from parking_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update parking_record
+    <set >
+      <if test="record.recId != null" >
+        rec_id = #{record.recId,jdbcType=BIGINT},
+      </if>
+      <if test="record.recCarId != null" >
+        rec_car_id = #{record.recCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recEntryDate != null" >
+        rec_entry_date = #{record.recEntryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.recLeaveDate != null" >
+        rec_leave_date = #{record.recLeaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.recTime != null" >
+        rec_time = #{record.recTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.recCharge != null" >
+        rec_charge = #{record.recCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recCost != null" >
+        rec_cost = #{record.recCost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recOwnId != null" >
+        rec_own_id = #{record.recOwnId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update parking_record
+    set rec_id = #{record.recId,jdbcType=BIGINT},
+      rec_car_id = #{record.recCarId,jdbcType=VARCHAR},
+      rec_entry_date = #{record.recEntryDate,jdbcType=TIMESTAMP},
+      rec_leave_date = #{record.recLeaveDate,jdbcType=TIMESTAMP},
+      rec_time = #{record.recTime,jdbcType=BIGINT},
+      rec_charge = #{record.recCharge,jdbcType=VARCHAR},
+      rec_cost = #{record.recCost,jdbcType=VARCHAR},
+      rec_own_id = #{record.recOwnId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.park.bean.ParkingRecord" >
+    update parking_record
+    <set >
+      <if test="recCarId != null" >
+        rec_car_id = #{recCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="recEntryDate != null" >
+        rec_entry_date = #{recEntryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recLeaveDate != null" >
+        rec_leave_date = #{recLeaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recTime != null" >
+        rec_time = #{recTime,jdbcType=BIGINT},
+      </if>
+      <if test="recCharge != null" >
+        rec_charge = #{recCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="recCost != null" >
+        rec_cost = #{recCost,jdbcType=VARCHAR},
+      </if>
+      <if test="recOwnId != null" >
+        rec_own_id = #{recOwnId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.park.bean.ParkingRecord" >
+    update parking_record
+    set rec_car_id = #{recCarId,jdbcType=VARCHAR},
+      rec_entry_date = #{recEntryDate,jdbcType=TIMESTAMP},
+      rec_leave_date = #{recLeaveDate,jdbcType=TIMESTAMP},
+      rec_time = #{recTime,jdbcType=BIGINT},
+      rec_charge = #{recCharge,jdbcType=VARCHAR},
+      rec_cost = #{recCost,jdbcType=VARCHAR},
+      rec_own_id = #{recOwnId,jdbcType=BIGINT}
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 自定义 -->
+   <select id="selectLikeRecord" parameterType="String" resultMap="BaseResultMap">
+ SELECT * FROM parking_record WHERE rec_car_id = #{recCarId}
+  </select>
+  
+   <select id="selectRecordIsN" parameterType="String" resultMap="BaseResultMap">
+ SELECT * FROM parking_record WHERE rec_car_id=#{recCarId} AND rec_leave_date IS NULL
+  </select>
+</mapper>

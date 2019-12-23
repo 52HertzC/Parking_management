@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.park.mapper.ParkingResMapper" >
+  <resultMap id="BaseResultMap" type="com.park.bean.ParkingRes" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="res_car_id" property="resCarId" jdbcType="VARCHAR" />
+    <result column="res_sta_id" property="resStaId" jdbcType="VARCHAR" />
+    <result column="res_start_time" property="resStartTime" jdbcType="TIMESTAMP" />
+    <result column="res_end_time" property="resEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, res_car_id, res_sta_id, res_start_time, res_end_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.park.bean.ParkingResExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parking_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from parking_res
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from parking_res
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.park.bean.ParkingResExample" >
+    delete from parking_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.park.bean.ParkingRes" >
+    insert into parking_res (id, res_car_id, res_sta_id, 
+      res_start_time, res_end_time)
+    values (#{id,jdbcType=BIGINT}, #{resCarId,jdbcType=VARCHAR}, #{resStaId,jdbcType=VARCHAR}, 
+      #{resStartTime,jdbcType=TIMESTAMP}, #{resEndTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.park.bean.ParkingRes" >
+    insert into parking_res
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="resCarId != null" >
+        res_car_id,
+      </if>
+      <if test="resStaId != null" >
+        res_sta_id,
+      </if>
+      <if test="resStartTime != null" >
+        res_start_time,
+      </if>
+      <if test="resEndTime != null" >
+        res_end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="resCarId != null" >
+        #{resCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="resStaId != null" >
+        #{resStaId,jdbcType=VARCHAR},
+      </if>
+      <if test="resStartTime != null" >
+        #{resStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resEndTime != null" >
+        #{resEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.park.bean.ParkingResExample" resultType="java.lang.Integer" >
+    select count(*) from parking_res
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update parking_res
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.resCarId != null" >
+        res_car_id = #{record.resCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resStaId != null" >
+        res_sta_id = #{record.resStaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resStartTime != null" >
+        res_start_time = #{record.resStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.resEndTime != null" >
+        res_end_time = #{record.resEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update parking_res
+    set id = #{record.id,jdbcType=BIGINT},
+      res_car_id = #{record.resCarId,jdbcType=VARCHAR},
+      res_sta_id = #{record.resStaId,jdbcType=VARCHAR},
+      res_start_time = #{record.resStartTime,jdbcType=TIMESTAMP},
+      res_end_time = #{record.resEndTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.park.bean.ParkingRes" >
+    update parking_res
+    <set >
+      <if test="resCarId != null" >
+        res_car_id = #{resCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="resStaId != null" >
+        res_sta_id = #{resStaId,jdbcType=VARCHAR},
+      </if>
+      <if test="resStartTime != null" >
+        res_start_time = #{resStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resEndTime != null" >
+        res_end_time = #{resEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.park.bean.ParkingRes" >
+    update parking_res
+    set res_car_id = #{resCarId,jdbcType=VARCHAR},
+      res_sta_id = #{resStaId,jdbcType=VARCHAR},
+      res_start_time = #{resStartTime,jdbcType=TIMESTAMP},
+      res_end_time = #{resEndTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+    <delete id="deletebyrescarid" parameterType="String" >
+     delete from parking_res where res_car_id=#{resCarId}
+  </delete>
+</mapper>

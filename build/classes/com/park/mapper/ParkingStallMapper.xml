@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.park.mapper.ParkingStallMapper" >
+  <resultMap id="BaseResultMap" type="com.park.bean.ParkingStall" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sta_id" property="staId" jdbcType="VARCHAR" />
+    <result column="sta_place" property="staPlace" jdbcType="BIGINT" />
+    <result column="sta_fixation" property="staFixation" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sta_id, sta_place, sta_fixation
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.park.bean.ParkingStallExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parking_stall
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from parking_stall
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from parking_stall
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.park.bean.ParkingStallExample" >
+    delete from parking_stall
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.park.bean.ParkingStall" >
+    insert into parking_stall (id, sta_id, sta_place, 
+      sta_fixation)
+    values (#{id,jdbcType=BIGINT}, #{staId,jdbcType=VARCHAR}, #{staPlace,jdbcType=BIGINT}, 
+      #{staFixation,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.park.bean.ParkingStall" >
+    insert into parking_stall
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="staId != null" >
+        sta_id,
+      </if>
+      <if test="staPlace != null" >
+        sta_place,
+      </if>
+      <if test="staFixation != null" >
+        sta_fixation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="staId != null" >
+        #{staId,jdbcType=VARCHAR},
+      </if>
+      <if test="staPlace != null" >
+        #{staPlace,jdbcType=BIGINT},
+      </if>
+      <if test="staFixation != null" >
+        #{staFixation,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.park.bean.ParkingStallExample" resultType="java.lang.Integer" >
+    select count(*) from parking_stall
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update parking_stall
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.staId != null" >
+        sta_id = #{record.staId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staPlace != null" >
+        sta_place = #{record.staPlace,jdbcType=BIGINT},
+      </if>
+      <if test="record.staFixation != null" >
+        sta_fixation = #{record.staFixation,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update parking_stall
+    set id = #{record.id,jdbcType=BIGINT},
+      sta_id = #{record.staId,jdbcType=VARCHAR},
+      sta_place = #{record.staPlace,jdbcType=BIGINT},
+      sta_fixation = #{record.staFixation,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.park.bean.ParkingStall" >
+    update parking_stall
+    <set >
+      <if test="staId != null" >
+        sta_id = #{staId,jdbcType=VARCHAR},
+      </if>
+      <if test="staPlace != null" >
+        sta_place = #{staPlace,jdbcType=BIGINT},
+      </if>
+      <if test="staFixation != null" >
+        sta_fixation = #{staFixation,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.park.bean.ParkingStall" >
+    update parking_stall
+    set sta_id = #{staId,jdbcType=VARCHAR},
+      sta_place = #{staPlace,jdbcType=BIGINT},
+      sta_fixation = #{staFixation,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

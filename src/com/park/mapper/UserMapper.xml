@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.park.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.park.bean.User" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_role_id" property="userRoleId" jdbcType="BIGINT" />
+    <result column="user_car_id" property="userCarId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, username, password, user_role_id, user_car_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.park.bean.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.park.bean.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.park.bean.User" >
+    insert into user (user_id, username, password, 
+      user_role_id, user_car_id)
+    values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userRoleId,jdbcType=BIGINT}, #{userCarId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.park.bean.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="userRoleId != null" >
+        user_role_id,
+      </if>
+      <if test="userCarId != null" >
+        user_car_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userRoleId != null" >
+        #{userRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="userCarId != null" >
+        #{userCarId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.park.bean.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userRoleId != null" >
+        user_role_id = #{record.userRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userCarId != null" >
+        user_car_id = #{record.userCarId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set user_id = #{record.userId,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      user_role_id = #{record.userRoleId,jdbcType=BIGINT},
+      user_car_id = #{record.userCarId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.park.bean.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userRoleId != null" >
+        user_role_id = #{userRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="userCarId != null" >
+        user_car_id = #{userCarId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.park.bean.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_role_id = #{userRoleId,jdbcType=BIGINT},
+      user_car_id = #{userCarId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  
+   <!-- 自定义 -->
+   
+   <sql id="User_Where_Clause">
+   <where> 
+   <if test="entity.parkingOwner!=null and entity.parkingOwner!=''">
+  	   <if test="entity.parkingOwner.carId!=null and entity.parkingOwner.carId!=''">
+  	   and car_id like "%${entity.parkingOwner.carId}%"
+  	  </if>
+  	  </if>
+  	 </where>
+  </sql>
+  
+   <select id="selectUser" parameterType="User" resultMap="UserMap">
+ SELECT * FROM USER u 
+ LEFT JOIN user_role ur ON u.user_role_id=ur.role_id WHERE u.username=#{username} and u.password=#{password}
+  </select>
+   <select id="selectByPageInfo" parameterType="pageInfo" resultMap="UserOwnerMap">
+  	SELECT * FROM USER u LEFT JOIN parking_owner o ON u.`user_car_id`=o.`car_id`
+  	<include refid="User_Where_Clause"></include>
+  	 limit #{start} , #{pageSize}
+  </select>
+     <select id="selectCountByPageInfo" parameterType="pageInfo" resultType="int">
+  		SELECT count(*) FROM USER u LEFT JOIN parking_owner o ON u.`user_car_id`=o.`car_id`
+  		<include refid="User_Where_Clause"></include>
+     </select>
+   <resultMap id="UserMap" type="com.park.bean.User" >
+  <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_role_id" property="userRoleId" jdbcType="BIGINT" />
+    <result column="user_car_id" property="userCarId" jdbcType="VARCHAR" />
+    <association property="userRole" javaType="userRole">
+    <id column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  
+  <resultMap id="UserOwnerMap" type="com.park.bean.User" >
+   <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_role_id" property="userRoleId" jdbcType="BIGINT" />
+    <result column="user_car_id" property="userCarId" jdbcType="VARCHAR" />
+    <association property="parkingOwner" javaType="parkingOwner">
+     <id column="own_id" property="ownId" jdbcType="BIGINT" />
+    <result column="car_id" property="carId" jdbcType="VARCHAR" />
+    <result column="car_sta_id" property="carStaId" jdbcType="BIGINT" />
+    <result column="car_name" property="carName" jdbcType="VARCHAR" />
+    <result column="car_site" property="carSite" jdbcType="VARCHAR" />
+    <result column="car_age" property="carAge" jdbcType="VARCHAR" />
+    <result column="car_phone" property="carPhone" jdbcType="VARCHAR" />
+    <result column="car_color" property="carColor" jdbcType="VARCHAR" />
+    <result column="car_money" property="carMoney" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+</mapper>
