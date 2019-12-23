@@ -71,11 +71,11 @@ CREATE TABLE `parking_record` (
   PRIMARY KEY (`rec_id`),
   KEY `rec_veh_id` (`rec_car_id`),
   KEY `parking_record_ibfk_1` (`rec_own_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 /*Data for the table `parking_record` */
 
-insert  into `parking_record`(`rec_id`,`rec_car_id`,`rec_entry_date`,`rec_leave_date`,`rec_time`,`rec_charge`,`rec_cost`,`rec_own_id`) values (1,'豫L00000','2019-12-16 00:00:00',NULL,NULL,NULL,NULL,1),(2,'豫L00001','2019-12-16 00:00:00',NULL,NULL,NULL,NULL,2),(3,'豫L66666','2019-12-17 16:47:40','2019-12-17 16:47:50',1,'2','2',NULL),(4,'豫L66666','2019-12-18 09:48:45','2019-12-18 09:49:12',1,'2','2',NULL),(5,'豫L66666','2019-12-18 09:48:58','2019-12-18 09:49:12',1,'2','2',NULL),(6,'豫L66666','2019-12-18 10:29:50','2019-12-18 10:30:10',1,'2','2',NULL),(7,'豫L66666','2019-12-19 23:08:00','2019-12-19 23:08:21',1,'2','2',NULL),(8,'豫L66666','2019-12-19 23:21:26','2019-12-19 23:26:45',1,'2','2',NULL),(9,'豫L66666','2019-12-19 23:26:51','2019-12-19 23:26:58',1,'2','2',NULL),(10,'豫L66666','2019-12-19 23:27:23','2019-12-19 23:38:58',1,'2','2',NULL),(11,'豫L66666','2019-12-19 23:38:45','2019-12-19 23:38:58',1,'2','2',NULL),(12,'豫L66666','2019-12-19 23:39:42','2019-12-19 23:41:28',1,'2','2',NULL),(13,'豫L66666','2019-12-19 23:41:34','2019-12-19 23:41:40',1,'2','2',NULL),(14,'豫L66666','2019-12-19 23:41:56','2019-12-19 23:42:01',1,'2','2',NULL);
+insert  into `parking_record`(`rec_id`,`rec_car_id`,`rec_entry_date`,`rec_leave_date`,`rec_time`,`rec_charge`,`rec_cost`,`rec_own_id`) values (1,'豫L00000','2019-12-16 00:00:00',NULL,NULL,NULL,NULL,1),(2,'豫L00001','2019-12-16 00:00:00',NULL,NULL,NULL,NULL,2),(3,'豫L66666','2019-12-17 16:47:40','2019-12-17 16:47:50',1,'2','2',NULL),(4,'豫L66666','2019-12-18 09:48:45','2019-12-18 09:49:12',1,'2','2',NULL),(5,'豫L66666','2019-12-18 09:48:58','2019-12-18 09:49:12',1,'2','2',NULL),(6,'豫L66666','2019-12-18 10:29:50','2019-12-18 10:30:10',1,'2','2',NULL),(7,'豫L66666','2019-12-19 23:08:00','2019-12-19 23:08:21',1,'2','2',NULL),(8,'豫L66666','2019-12-19 23:21:26','2019-12-19 23:26:45',1,'2','2',NULL),(9,'豫L66666','2019-12-19 23:26:51','2019-12-19 23:26:58',1,'2','2',NULL),(10,'豫L66666','2019-12-19 23:27:23','2019-12-19 23:38:58',1,'2','2',NULL),(11,'豫L66666','2019-12-19 23:38:45','2019-12-19 23:38:58',1,'2','2',NULL),(12,'豫L66666','2019-12-19 23:39:42','2019-12-19 23:41:28',1,'2','2',NULL),(13,'豫L66666','2019-12-19 23:41:34','2019-12-19 23:41:40',1,'2','2',NULL),(14,'豫L66666','2019-12-19 23:41:56','2019-12-19 23:42:01',1,'2','2',NULL),(15,'豫L66666','2019-12-20 09:08:27','2019-12-20 09:09:14',1,'2','2',NULL),(16,'豫L66666','2019-12-20 09:26:56','2019-12-20 09:27:12',1,'2','2',NULL),(17,'豫L66666','2019-12-20 09:26:56','2019-12-20 09:27:12',1,'2','2',NULL),(18,'豫L66666','2019-12-20 09:27:03','2019-12-20 09:27:12',1,'2','2',NULL);
 
 /*Table structure for table `parking_res` */
 
@@ -88,7 +88,7 @@ CREATE TABLE `parking_res` (
   `res_start_time` datetime DEFAULT NULL COMMENT '预订开始时间',
   `res_end_time` datetime DEFAULT NULL COMMENT '预订结束时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 /*Data for the table `parking_res` */
 
@@ -158,8 +158,6 @@ CREATE TABLE `wx_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wx_user` */
-
-insert  into `wx_user`(`id`,`openid`,`username`,`password`,`user_role_id`,`user_car_id`) values (1,'oXDRL5HNAc7Egx8n5yB5BIxF0GSE','cyh','cyh',2,'豫L66666'),(2,'oXDRL5Ifzc0DJ5n5U0HDM2eOfEGs','gxuxu','gxuxu',1,'豫L00022');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
