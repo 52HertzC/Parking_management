@@ -1,0 +1,28 @@
+<!--pages/parklogs/parkrecord/parkrecord.wxml-->
+<view class="weui-cells__title">停车缴费记录详情</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">车牌号</view>
+                <view class="weui-cell__ft">{{parkingRecord.recCarId}}</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">进入时间</view>
+                <view class="weui-cell__ft">{{indatetime}}</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">离开时间</view>
+                <view class="weui-cell__ft">{{parkingRecord.recLeaveDate==null||parkingRecord.recLeaveDate==''?"":datetime}}</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">停车时间(/小时)</view>
+                <view class="weui-cell__ft">{{parkingRecord.recTime==null||parkingRecord.recTime==''?"":parkingRecord.recTime}}</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">收费标准(元/小时)</view>
+                <view class="weui-cell__ft">{{parkingRecord.recCharge==null||parkingRecord.recCharge==''?"":parkingRecord.recCharge}}</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">总费用(元)</view>
+                <view class="weui-cell__ft">{{parkingRecord.recCost==null||parkingRecord.recCost==''?"":parkingRecord.recCost}}</view>
+            </view>
+        </view>

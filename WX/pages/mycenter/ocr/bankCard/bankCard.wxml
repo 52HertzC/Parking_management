@@ -1,0 +1,13 @@
+<!--pages/mycenter/ocr/bankCard/bankCard.wxml-->
+<ocr-navigator wx:if="{{isBankCard}}" bind:onSuccess="bankSuccess"   certificateType="bankCard" selectedOptions="{{['bankName','number','validDate']}}">
+      <button type="primary">银行卡识别</button>
+    </ocr-navigator>
+    <view wx:else class="weui-cells weui-cells_after-title">
+  <image class="userinfo-avatar" src="{{bankCard.image_path}}" mode="cover"></image>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">银行卡号</view>
+      <view class="weui-cell__ft">{{bankCard.number.text}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<!--pages/mycenter/ocr/ocr.wxml-->
+<view class="page">
+  <view class="page__hd">
+
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <button class="weui-btn" bindtap="idCard" type="primary">身份证识别</button>
+
+
+    <button class="weui-btn" bindtap="bankCard" type="default">银行卡识别</button>
+
+
+    <button class="weui-btn" bindtap="drivingLicense" type="warn">行驶证识别</button>
+
+
+    <button class="weui-btn" bindtap="businessLicense" type="default">营业执照识别</button>
+
+  </view>
+</view>

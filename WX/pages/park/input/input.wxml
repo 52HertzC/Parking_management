@@ -1,0 +1,35 @@
+<!--pages/park/input/input.wxml-->
+<view class="weui-cells__title">停车</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">车牌号</view>
+    </view>
+    <view  class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入车牌号" value="{{recCarId}}"  bindinput="bindrecCarIdInput"  />
+    </view>
+  </view>
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">日期</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="date" value="{{date}}" start="" end="" bindchange="bindDateChange">
+        <view class="weui-input">{{date}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">时间</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="time" value="{{time}}" start="" end="" bindchange="bindTimeChange">
+        <view class="weui-input">{{time}}</view>
+      </picker>
+    </view>
+  </view>
+</view>
+<view class="weui-btn-area">
+  <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+</view>

@@ -1,0 +1,80 @@
+<!--pages/park/output/output.wxml-->
+<view class="weui-cells__title">缴费</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">车牌号</view>
+    </view>
+    <view  class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入车牌号" value="{{record.recCarId}}"  bindinput="bindrecCarIdInput"  />
+    </view>
+  </view>
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">进入日期</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="date" value="{{indate}}" start="" end="" bindchange="bindDateChange">
+        <view class="weui-input">{{indate}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">进入时间</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="time" value="{{intime}}" start="" end="" bindchange="bindTimeChange">
+        <view class="weui-input">{{intime}}</view>
+      </picker>
+    </view>
+  </view>
+   <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">离开日期</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="date" value="{{date}}" start="" end="" bindchange="bindOutDateChange">
+        <view class="weui-input">{{date}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">离开时间</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="time" value="{{time}}" start="" end="" bindchange="bindOutTimeChange">
+        <view class="weui-input">{{time}}</view>
+      </picker>
+    </view>
+  </view>
+    <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">停车时间(/小时)</view>
+    </view>
+    <view  class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入停车时间" value="{{recTime}}"  bindinput="bindrectimeInput"  />
+      
+    </view>
+  </view>
+    <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">收费标准(元/小时)</view>
+    </view>
+    <view  class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入收费标准" value="{{recCharge}}"  bindinput="bindrecChargeInput"  />
+    </view>
+  </view>
+    <view class="weui-cell ">
+    <view class="weui-cell__hd">
+      <view class="weui-label">总费用(元)</view>
+    </view>
+    <view  class="weui-cell__bd">
+      <input class="weui-input" placeholder="请输入车牌号" value="{{recCost}}"  bindinput="bindrecCostInput"  />
+    </view>
+  </view>
+</view>
+<view class="weui-btn-area">
+  <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+</view>

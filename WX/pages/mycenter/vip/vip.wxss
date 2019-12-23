@@ -1,0 +1,9 @@
+/* pages/mycenter/vip/vip.wxss */
+.button-sp-area{
+    margin: 0 auto;
+    padding-top: 15px;
+    text-align:center;
+}
+.weui-btn{
+  margin-top: 10px
+}

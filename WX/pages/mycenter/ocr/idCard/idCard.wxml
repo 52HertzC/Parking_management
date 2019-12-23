@@ -1,0 +1,42 @@
+<!--pages/mycenter/ocr/idCard/idCard.wxml-->
+<ocr-navigator wx:if="{{isIdCardOne}}" bind:onSuccess="successOne" certificateType="idCard">
+  <button type="primary">身份证反面识别</button>
+</ocr-navigator>
+<view wx:else class="weui-cells weui-cells_after-title">
+  <image class="userinfo-avatar" src="{{idCardOne.image_path}}" mode="cover"></image>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">有效期限</view>
+      <view class="weui-cell__ft">{{idCardOne.valid_date.text}}</view>
+    </view>
+  </view>
+</view>
+
+<ocr-navigator  wx:if="{{isIdCardTwo}}"  bind:onSuccess="successTwo" certificateType="idCard" opposite="{{false}}">
+  <button type="primary">身份证正面识别</button>
+</ocr-navigator>
+<view wx:else class="weui-cells weui-cells_after-title">
+  <image class="userinfo-avatar" src="{{idCardTwo.image_path}}" mode="cover"></image>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">姓名</view>
+      <view class="weui-cell__ft">{{idCardTwo.name.text}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">性别</view>
+      <view class="weui-cell__ft">{{idCardTwo.gender.text}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">民族</view>
+      <view class="weui-cell__ft">{{idCardTwo.nationality.text}}</view>
+    </view>
+     <view class="weui-cell">
+      <view class="weui-cell__bd">住址</view>
+      <view class="weui-cell__ft">{{idCardTwo.address.text}}</view>
+    </view>
+     <view class="weui-cell">
+      <view class="weui-cell__bd">身份证号</view>
+      <view class="weui-cell__ft">{{idCardTwo.id.text}}</view>
+    </view>
+  </view>
+</view>

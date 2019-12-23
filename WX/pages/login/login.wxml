@@ -1,0 +1,25 @@
+<!--pages/login/login.wxml-->
+ <view class="weui-cells__title">用户绑定</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">用户名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入用户名" bindinput="nameInput"/>
+      </view>
+    </view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">密码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入密码" password bindinput="passInput"/>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="showTopTips">绑定用户</button>
+     <button class="weui-btn" type="primary" bindtap="tosaveTopTips">注册</button>
+      <button class="weui-btn" type="primary" bindtap="tomycenterTopTips">返回个人中心</button>
+  </view>

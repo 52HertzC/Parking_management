@@ -1,0 +1,96 @@
+<!--pages/park/park.wxml-->
+
+<view class="page">
+  <view class="page__hd">
+    <view wx:if="{{userInfo==null}}" class="page__desc">请先到个人中心登录微信账号!</view>
+    <view wx:elif="{{carid==''}}" class="page__desc">请先到个人中心绑定账号!</view>
+    <view wx:else class="page__desc">本页面为停车场页面，如需停车或者离开请点击车位即可，如要更换区域(默认为A区)，请点击选择区域。</view>
+
+
+
+  </view>
+  <view class="page__bd">
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="default" bindtap="open">选择区域</button>
+    </view>
+  </view>
+  <view wx:if="{{carid==''}}" class="page__bd">
+
+  </view>
+  <view wx:else class="page__bd">
+    <view class="weui-grids">
+      <block wx:for="{{grids}}" wx:key="*this">
+     
+        <navigator wx:if="{{item.manageCarId!=''&&item.manageCarId!=null&&item.manageCarId==carid}}" url="{{item.manageCarId==''||item.manageCarId==null?'../park/input/input?manageStaId=':'../park/output/output?manageStaId='}}{{item.manageStaId}}&id={{item.id}}"
+          class="weui-grid" hover-class="weui-grid_active">
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}">
+            <image class="weui-grid__icon" src="/icons/emptycar.png" />
+          </view>
+          <view wx:else>
+            <image class="weui-grid__icon" src="/icons/parking.png" />
+          </view>
+          <view class="weui-grid__label">{{item.manageStaId}}</view>
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}" class="weui-grid__label">
+          </view>
+          <view wx:else class="weui-grid__label">{{item.manageCarId}}</view>
+        </navigator>
+         <navigator wx:elif="{{item.manageStaId==parkingRes.resStaId}}" url="../park/input/input?manageStaId={{item.manageStaId}}&id={{item.id}}"
+          class="weui-grid" hover-class="weui-grid_active">
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}">
+            <image class="weui-grid__icon" src="/icons/emptycar.png" />
+          </view>
+          <view wx:else>
+            <image class="weui-grid__icon" src="/icons/parking.png" />
+          </view>
+          <view class="weui-grid__label">{{item.manageStaId}}</view>
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}" class="weui-grid__label">
+          </view>
+          <view wx:else class="weui-grid__label">{{item.manageCarId}}</view>
+        </navigator>
+        <navigator wx:elif="{{item.manageCarId==''||item.manageCarId==null}}" url="../park/input/input?manageStaId={{item.manageStaId}}&id={{item.id}}" class="weui-grid" hover-class="weui-grid_active">
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}">
+            <image class="weui-grid__icon" src="/icons/emptycar.png" />
+          </view>
+          <view wx:else>
+            <image class="weui-grid__icon" src="/icons/parking.png" />
+          </view>
+          <view class="weui-grid__label">{{item.manageStaId}}</view>
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}" class="weui-grid__label">
+          </view>
+          <view wx:else class="weui-grid__label">{{item.manageCarId}}</view>
+        </navigator>
+        <navigator wx:else catchtap="openDialog" url="" class="weui-grid" hover-class="weui-grid_active">
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}">
+            <image class="weui-grid__icon" src="/icons/emptycar.png" />
+          </view>
+          <view wx:else>
+            <image class="weui-grid__icon" src="/icons/parking.png" />
+          </view>
+          <view class="weui-grid__label">{{item.manageStaId}}</view>
+          <view wx:if="{{item.manageCarId==''||item.manageCarId==null}}" class="weui-grid__label">
+          </view>
+          <view wx:else class="weui-grid__label">{{item.manageCarId}}</view>
+        </navigator>
+      </block>
+    </view>
+
+  </view>
+  <view class="page__bd">
+    <view class="weui-demo-dialog {{istrue ? 'weui-demo-dialog_show' : ''}}">
+      <view class="weui-mask" bindtap="closeDialog"></view>
+      <view class="weui-dialog__wrp" bindtap="closeDialog">
+        <view class="weui-dialog" catchtap="stopEvent">
+          <view xw:if="{{item.manageCarId==''||item.manageCarId==null}}" class="weui-dialog__bd">
+            <image class="weui-article__img" src="/icons/parking.png" mode="aspectFill" style="max-width:100%;" />
+          </view>
+          <view xw:else class="weui-dialog__bd">
+            请选择自己车辆所在车位！ </view>
+          <view class="weui-dialog__ft">
+            <view class="weui-dialog__btn weui-dialog__btn_default" bindtap="closeDialog">取消</view>
+            <view class="weui-dialog__btn" bindtap="closeDialog">确定</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

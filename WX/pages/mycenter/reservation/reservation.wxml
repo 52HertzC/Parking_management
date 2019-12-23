@@ -1,0 +1,84 @@
+<!--pages/mycenter/reservation/reservation.wxml-->
+<view wx:if="{{userInfo==null||userInfo==''||userInfo==undefined}}" class="page__desc">请先到个人中心登录微信账号!</view>
+<view wx:elif="{{carId==null||carId==''}}" class="page__desc">请先到个人中心绑定账号!</view>
+<view wx:elif="{{isParkingRes==true}}" class="page">
+  <view class="weui-cells__title">VIP预订车位</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">车牌号</view>
+      <view class="weui-cell__ft">{{parkingResCarId.resCarId}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">车位号</view>
+      <view class="weui-cell__ft">{{parkingResCarId.resStaId}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">预订开始时间</view>
+      <view class="weui-cell__ft">{{startdatetime}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">预订结束时间</view>
+      <view class="weui-cell__ft">{{enddatetime}}</view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="default" bindtap="showTopTipss">取消预订</button>
+  </view>
+</view>
+<view wx:elif="isParkingRes==false" class="page">
+  <view class="page__hd">
+    <view class="page__title">预订车位</view>
+    <view class="page__desc">预订车位最多只能预订1个小时</view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">车牌号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入车牌号" value="{{carId}}" bindinput="bindrecCarIdInput" />
+      </view>
+    </view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">车位号</view>
+      </view>
+      <picker mode="multiSelector" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" bindchange="bindMultiPickerChange">
+        <view class="weui-input">{{multiArray[0][multiIndex[0]]}},{{multiArray[1][multiIndex[1]]}}</view>
+      </picker>
+    </view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">日期</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{date}}" start="" end="" disabled="disabled" bindchange="bindDateChange">
+          <view class="weui-input">{{date}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">当前时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="time" value="{{time}}" start="" end="" disabled="disabled" bindchange="bindTimeChange">
+          <view class="weui-input">{{time}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell ">
+      <view class="weui-cell__hd">
+        <view class="weui-label">预计到达时间</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="time" value="" start="{{time}}" end="{{endTime}}" bindchange="bindEndTimeChange">
+          <view class="weui-input">{{endTimes}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+  </view>
+</view>

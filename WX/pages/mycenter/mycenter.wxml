@@ -1,0 +1,102 @@
+<!--pages/mycenter/mycenter.wxml-->
+
+ <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取微信 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+<view class="weui-cells__title">个人信息</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">用户名</view>
+      <view class="weui-cell__ft">{{user.username}}</view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">级别</view>
+      <view class="weui-cell__ft">{{user.userRoleId==1?'普通用户':'管理员'}}</view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">车牌号</view>
+      <view class="weui-cell__ft">{{user.userCarId}}</view>
+    </view>
+  </view>
+</view>
+<view class="weui-cells__title"></view>
+<view class="weui-cells weui-cells_after-title">
+  <navigator wx:if="{{grids.manageCarId==''||grids.manageCarId==null||grids==undefined}}" bindtap="openDialog" url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/pay.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">支付</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+  <navigator wx:else url="../park/output/output?manageStaId={{grids.manageStaId}}&id={{grids.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/pay.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">支付</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+  <navigator url="../mycenter/vip/vip" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/vip.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">VIP</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+   <navigator url="../mycenter/reservation/reservation" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/reservation.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">VIP预订车位</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+  <navigator url="../mycenter/change/change" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/update.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">修改密码</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+   <navigator bindtap="showTopTips" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/binding.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">用户绑定</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+<navigator url="../mycenter/ocr/ocr" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__hd">
+      <image src="/icons/plug-in.png" style="margin-right: 16px;vertical-align: middle;width:20px; height: 20px;"></image>
+    </view>
+    <view class="weui-cell__bd">OCR</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+
+
+<view class="page__bd">
+  <view class="weui-demo-dialog {{istrue ? 'weui-demo-dialog_show' : ''}}">
+    <view class="weui-mask" bindtap="closeDialog"></view>
+    <view class="weui-dialog__wrp" bindtap="closeDialog">
+      <view class="weui-dialog" catchtap="stopEvent">
+        <view xw:if="{{item.manageCarId==''||item.manageCarId==null}}" class="weui-dialog__bd">
+          <image class="weui-article__img" src="/icons/parking.png" mode="aspectFill" style="max-width:100%;" />
+        </view>
+        <view xw:else class="weui-dialog__bd">
+          您没有车辆停在本停车场，无法缴费！ </view>
+        <view class="weui-dialog__ft">
+          <view class="weui-dialog__btn weui-dialog__btn_default" bindtap="closeDialog">取消</view>
+          <view class="weui-dialog__btn" bindtap="closeDialog">确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

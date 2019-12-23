@@ -1,0 +1,91 @@
+<!--pages/mycenter/vip/vip.wxml-->
+<view wx:if="{{userInfo==null||userInfo==''||userInfo==undefined}}" class="page__desc">请先到个人中心登录微信账号!</view>
+<view wx:elif="{{sessionCarId==null||sessionCarId==''}}" class="page__desc">请先到个人中心绑定账号!</view>
+<view wx:elif="{{isParkingOwner==true}}" class="page__bd">
+
+  <view class="weui-cells__title">VIP个人信息绑定</view>
+  <view class="weui-cells weui-cells_after-title">
+
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">车牌号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入车牌号" disabled value="{{sessionCarId}}" />
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">身份证号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindblur="idCard" type="idcard" placeholder="请输入身份证号" value="{{parkingOwners.carStaId}}" />
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">姓名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindblur="carName" placeholder="请输入姓名" value="{{parkingOwners.carName}}" />
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">地址</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindblur="carSite" placeholder="请输入地址" value="{{parkingOwners.carSite}}" />
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">联系电话</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindblur="carPhone" type="number" placeholder="请输入联系电话" />
+      </view>
+    </view>
+
+  </view>
+  <view class="weui-btn-area">
+    <ocr-navigator bind:onSuccess="successTwo" certificateType="idCard" opposite="{{false}}">
+      <button type="primary">身份证正面识别</button>
+    </ocr-navigator>
+    <button class="weui-btn" type="default" bindtap="showTopTips">确定</button>
+  </view>
+</view>
+<view wx:else class="page__bd">
+  <view class="weui-cells__title">VIP个人信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">车牌号</view>
+      <view class="weui-cell__ft">{{parkingOwner.carId}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">身份证号</view>
+      <view class="weui-cell__ft">{{parkingOwner.carStaId}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">姓名</view>
+      <view class="weui-cell__ft">{{parkingOwner.carName}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">地址</view>
+      <view class="weui-cell__ft">{{parkingOwner.carSite}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">联系电话</view>
+      <view class="weui-cell__ft">{{parkingOwner.carPhone}}</view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">余额</view>
+      <view class="weui-cell__ft">{{parkingOwner.carMoney==null?0:parkingOwner.carMoney}}</view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="default" bindtap="showTopTipsss">充值</button>
+    <button class="weui-btn" type="default" bindtap="showTopTipss">修改个人信息</button>
+  </view>
+
+</view>

@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/park/park",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/mycenter/reservation/reservation",
+    "pages/mycenter/mycenter",
+    "pages/mycenter/ocr/ocr",
+    "pages/mycenter/vip/vip",
+    "pages/mycenter/vip/update/update",
+    "pages/mycenter/ocr/idCard/idCard",
+    "pages/mycenter/ocr/bankCard/bankCard",
+    "pages/mycenter/ocr/drivingLicense/drivingLicense",
+    "pages/mycenter/ocr/businessLicense/businessLicense",
+    "pages/parklogs/parkrecord/parkrecord",
+    "pages/parklogs/parklogs", 
+    "pages/mycenter/change/change",
+    "pages/mycenter/wxmycenter/wxmycenter",
+    "pages/park/input/input",
+    "pages/park/output/output",
+    "pages/logs/logs",
+    "pages/register/register",
+    "pages/list/list"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "停车场管理系统",
+    "navigationBarTextStyle": "black"
+   
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/park/park",
+        "text": "首页",
+        "iconPath": "icons/首页.png",
+        "selectedIconPath": "icons/首页(1).png"
+      },
+      {
+        "pagePath": "pages/parklogs/parklogs",
+        "text": "停车记录",
+        "iconPath": "icons/日志.png",
+        "selectedIconPath": "icons/日志(1).png"
+      },
+      {
+        "pagePath": "pages/mycenter/mycenter",
+        "text": "个人中心",
+        "iconPath": "icons/认证用户.png",
+        "selectedIconPath": "icons/认证用户(1).png"
+      }
+    ]
+  },
+  "plugins": {
+    "ocr-plugin": {
+      "version": "3.0.1",
+      "provider": "wx4418e3e031e551be"
+    },
+    "WechatSI": {
+      "version": "0.3.3",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+ 
+  "sitemapLocation": "sitemap.json"
+ 
+}

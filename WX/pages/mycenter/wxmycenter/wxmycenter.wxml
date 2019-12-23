@@ -1,0 +1,41 @@
+<!--pages/mycenter/wxmycenter/wxmycenter.wxml-->
+<view class="weui-cells__title">微信个人信息</view>
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">头像</view>
+      <view class="weui-cell__ft">
+        <image style="vertical-align: middle;width:50px; height: 50px;" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">昵称</view>
+      <view class="weui-cell__ft"> {{userInfo.nickName}}</view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">性别</view>
+      <view class="weui-cell__ft">{{userInfo.gender==1?'男':'女'}}</view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">地区</view>
+      <view class="weui-cell__ft">
+        <text>{{userInfo.province}} {{userInfo.city}}</text>
+        <text wx:if="{{!userInfo.province}}">{{userInfo.country}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">个性签名</view>
+      <view class="weui-cell__ft"></view>
+    </view>
+  </view>
+
+</view>

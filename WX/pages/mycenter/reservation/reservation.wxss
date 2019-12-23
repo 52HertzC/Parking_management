@@ -1,0 +1,6 @@
+/* pages/mycenter/reservation/reservation.wxss */
+.weui-btn-area{
+    margin: 0 auto;
+    padding-top: 15px;
+    text-align:center;
+}

@@ -1,0 +1,32 @@
+<!--pages/mycenter/change/change.wxml-->
+ <view class="weui-cells__title">修改密码</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell ">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">旧密码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入旧密码" bindinput="passwordInputOld"/>
+                </view>
+            </view>
+ <view class="weui-cell ">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">新密码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入新密码" bindinput="passwordInputNew"/>
+                </view>
+            </view>
+             <view class="weui-cell ">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">新密码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请再次输入新密码" bindinput="passwordInputNewTwo"/>
+                </view>
+            </view>
+       
+        </view>
+            <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="showTopTipss">确定</button>
+        </view>

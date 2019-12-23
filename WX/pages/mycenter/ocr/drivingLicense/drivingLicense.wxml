@@ -1,0 +1,16 @@
+<!--pages/mycenter/ocr/drivingLicense/drivingLicense.wxml-->
+<ocr-navigator wx:if="{{isDrivingLicense}}" bind:onSuccess="driverSuccess" certificateType="drivingLicense">
+  <button type="primary">行驶证识别</button>
+</ocr-navigator>
+ <view wx:else class="weui-cells weui-cells_after-title">
+  <image class="userinfo-avatar" src="{{drivingLicense.image_path}}" mode="cover"></image>
+  <!-- <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd"></view>
+      <view class="weui-cell__ft">{{}}</view>
+    </view>
+  </view> -->
+   <view class="weui-cells weui-cells_after-title">
+    暂未开通！
+  </view>
+</view>
