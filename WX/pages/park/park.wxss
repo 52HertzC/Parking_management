@@ -11,3 +11,6 @@ page{
   visibility:visible;
   opacity:1;
 }
+.weui-grid{
+  height: 115px;
+}

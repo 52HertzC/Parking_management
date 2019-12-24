@@ -8,7 +8,8 @@ Page({
     carid:"",
     grids: [],
     userInfo:{},
-    parkingRes:{}
+    parkingRes:{},
+    isInput:""
   },
   open: function() {
     var itemLists = ['A', 'B', 'C'];
@@ -41,6 +42,16 @@ Page({
   closeDialog: function() {
     this.setData({
       istrue: false
+    })
+  }, 
+  openDialogs: function () {
+    this.setData({
+      istrues: true
+    })
+  },
+  closeDialogs: function () {
+    this.setData({
+      istrues: false
     })
   },
   /**
@@ -126,6 +137,20 @@ Page({
                   })
                 }
               })
+
+              wx.request({
+                url: getApp().globalData.url + '/Parking_management/record/dateisnull.action?',
+                data: { 'recCarId': getApp().globalData.sessionCarId },
+                success: function (res) {
+                  console.log(res)
+                  if (res.data.rows[0] != undefined) {
+                    that.setData({
+                      isInput: true
+                    })
+
+                  }
+                }
+              })
             } 
           }
         })
@@ -134,7 +159,9 @@ Page({
       }
     })
     }
-   
+    that.setData({
+      isInput: ""
+    })
   },
 
   /**

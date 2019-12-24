@@ -6,7 +6,7 @@
       <view class="weui-label">车牌号</view>
     </view>
     <view  class="weui-cell__bd">
-      <input class="weui-input" placeholder="请输入车牌号" value="{{recCarId}}"  bindinput="bindrecCarIdInput"  />
+      <input class="weui-input" placeholder="请输入车牌号" disabled="true" value="{{recCarId}}"  bindinput="bindrecCarIdInput"  />
     </view>
   </view>
   <view class="weui-cell ">
@@ -14,7 +14,7 @@
       <view class="weui-label">日期</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="date" value="{{date}}" start="" end="" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" start="" end="" disabled="true" bindchange="bindDateChange">
         <view class="weui-input">{{date}}</view>
       </picker>
     </view>
@@ -24,7 +24,7 @@
       <view class="weui-label">时间</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="time" value="{{time}}" start="" end="" bindchange="bindTimeChange">
+      <picker mode="time" value="{{time}}" start="" end="" disabled="true" bindchange="bindTimeChange">
         <view class="weui-input">{{time}}</view>
       </picker>
     </view>

@@ -16,7 +16,11 @@
     </view>
   </view>
   <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell">
+    <view wx:if="{{user.userRoleId==null||user.userRoleId==''||user.userRoleId==undefined}}" class="weui-cell">
+      <view class="weui-cell__bd">级别</view>
+      <view class="weui-cell__ft"></view>
+    </view>
+     <view wx:else class="weui-cell">
       <view class="weui-cell__bd">级别</view>
       <view class="weui-cell__ft">{{user.userRoleId==1?'普通用户':'管理员'}}</view>
     </view>

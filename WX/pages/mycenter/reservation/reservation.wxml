@@ -1,6 +1,7 @@
 <!--pages/mycenter/reservation/reservation.wxml-->
 <view wx:if="{{userInfo==null||userInfo==''||userInfo==undefined}}" class="page__desc">请先到个人中心登录微信账号!</view>
 <view wx:elif="{{carId==null||carId==''}}" class="page__desc">请先到个人中心绑定账号!</view>
+<view wx:elif="{{isParkingOwner==true}}" class="page__desc">请先到个人中心绑定VIP!</view>
 <view wx:elif="{{isParkingRes==true}}" class="page">
   <view class="weui-cells__title">VIP预订车位</view>
   <view class="weui-cells weui-cells_after-title">

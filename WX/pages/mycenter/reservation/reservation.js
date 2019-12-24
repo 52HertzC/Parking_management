@@ -24,14 +24,15 @@ Page({
     startdatetime: "",
     enddatetime: "",
     carId: "",
-    staId: "A001",
+    staId: "",
     id:"",
     parkingmanage: {},
     parkingRes: {},
     parkingResCarId: {},
     isParkingRes: false,
     manage: {},
-    userInfo: {}
+    userInfo: {},
+    isParkingOwner: true
   },
   bindMultiPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -49,17 +50,35 @@ Page({
     data.multiIndex[e.detail.column] = e.detail.value;
     switch (e.detail.column) {
       case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = that.data.multiArrayA;
-            break;
-          case 1:
-            data.multiArray[1] = that.data.multiArrayB;
-            break;
-          case 2:
-            data.multiArray[1] = that.data.multiArrayC;
-            break;
-        }
+        if (data.multiArray[0].length==3){
+          switch (data.multiIndex[0]) {
+            case 0:
+              data.multiArray[1] = that.data.multiArrayA;
+              break;
+            case 1:
+              data.multiArray[1] = that.data.multiArrayB;
+              break;
+            case 2:
+              data.multiArray[1] = that.data.multiArrayC;
+              break;
+          }
+        } else if (data.multiArray[0].length == 2){
+          switch (data.multiIndex[0]) {
+            case 0:
+              data.multiArray[1] = that.data.multiArrayB;
+              break;
+            case 1:
+              data.multiArray[1] = that.data.multiArrayC;
+              break;
+          }
+        } else if (data.multiArray[0].length == 1){
+          switch (data.multiIndex[0]) {
+            case 0:
+              data.multiArray[1] = that.data.multiArrayC;
+              break;
+          }
+      }
+       
         data.multiIndex[1] = 0;
         break;
     }
@@ -303,12 +322,43 @@ Page({
         manageStaIdA = manageStaIdA.split(",")
         manageStaIdB = manageStaIdB.split(",")
         manageStaIdC = manageStaIdC.split(",")
-        that.setData({
-          multiArray: [manageArea, manageStaIdA],
-          multiArrayA: manageStaIdA,
-          multiArrayB: manageStaIdB,
-          multiArrayC: manageStaIdC
-        })
+        console.log(manageStaIdB)
+        if (manageStaIdA == "" && manageStaIdB != "" && manageStaIdC!=""){
+          console.log("进入A")
+          that.setData({
+            multiArray: [manageArea, manageStaIdB],
+            multiArrayA: manageStaIdA,
+            multiArrayB: manageStaIdB,
+            multiArrayC: manageStaIdC,
+            staId: manageStaIdB[0]
+          })
+        } else if( manageStaIdA == "" && manageStaIdB == "" && manageStaIdC != ""){
+          console.log("进入B")
+          that.setData({
+            multiArray: [manageArea, manageStaIdC],
+            multiArrayA: manageStaIdA,
+            multiArrayB: manageStaIdB,
+            multiArrayC: manageStaIdC,
+            staId: manageStaIdC[0]
+          })
+        } else if (manageStaIdA == "" && manageStaIdB != "" && manageStaIdC == ""){
+          that.setData({
+            multiArray: [manageArea, manageStaIdB],
+            multiArrayA: manageStaIdA,
+            multiArrayB: manageStaIdB,
+            multiArrayC: manageStaIdC,
+            staId: manageStaIdB[0]
+          })
+        }else{
+          that.setData({
+            multiArray: [manageArea, manageStaIdA],
+            multiArrayA: manageStaIdA,
+            multiArrayB: manageStaIdB,
+            multiArrayC: manageStaIdC,
+            staId: manageStaIdA[0]
+          })
+        }
+       
       }
     })
     //通过车牌号查询所有预订
@@ -330,6 +380,26 @@ Page({
           })
         }
 
+      }
+    })
+    wx.request({
+      url: getApp().globalData.url + '/Parking_management/owner/wxlist.action',
+      data: {
+        'carId': getApp().globalData.sessionCarId
+      },
+      success: function (res) {
+        console.log(res.data.rows[0])
+        if (res.data.rows[0] == undefined) {
+          that.setData({
+            parkingOwner: {},
+            isParkingOwner: true
+          })
+        } else {
+          that.setData({
+            parkingOwner: res.data.rows[0],
+            isParkingOwner: false
+          })
+        }
       }
     })
   },
