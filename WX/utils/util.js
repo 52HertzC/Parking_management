@@ -58,6 +58,8 @@ function formatTimeTwo(timestamp, format) {
 }
 
 function formatTimeDate(faultDate, completeTime) {
+  faultDate = faultDate.replace(/-/g, '/');
+  completeTime = completeTime.replace(/-/g, '/');
   var stime = Date.parse(new Date(faultDate));
   var etime = Date.parse(new Date(completeTime));
   var usedTime = stime - etime; //两个时间戳相差的毫秒数
@@ -67,6 +69,8 @@ function formatTimeDate(faultDate, completeTime) {
 }
 //计算相差毫秒数
 function formatTimeDate_ms(faultDate, completeTime) {
+  faultDate = faultDate.replace(/-/g, '/');
+  completeTime = completeTime.replace(/-/g, '/');
   var stime = Date.parse(new Date(faultDate));
   var etime = Date.parse(new Date(completeTime));
   var usedTime = stime - etime; //两个时间戳相差的毫秒数

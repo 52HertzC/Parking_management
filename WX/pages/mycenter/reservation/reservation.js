@@ -32,7 +32,20 @@ Page({
     isParkingRes: false,
     manage: {},
     userInfo: {},
-    isParkingOwner: true
+    isParkingOwner: true,
+    systemInfo: {}
+  },
+  sys: function () {//判断系统
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          systemInfo: res,
+        })
+
+      }
+    })
   },
   bindMultiPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -279,9 +292,16 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    var time = util.formatTimeNow(new Date());
-    var date = util.formatDate(new Date());
-    var endTime = util.formatTimeNow_1(new Date());
+    if (this.data.systemInfo.platform == "ios") {
+      var time = util.formatTimeNow(new Date());
+      var date = util.formatDate(new Date());
+      var endTime = util.formatTimeNow_1(new Date());
+      date = Date.parse(date.replace(/-/g, "/"));
+    } else {
+      var time = util.formatTimeNow(new Date());
+      var date = util.formatDate(new Date());
+      var endTime = util.formatTimeNow_1(new Date());
+    }
     
     that.setData({
       date: date,

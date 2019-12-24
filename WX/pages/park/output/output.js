@@ -16,7 +16,20 @@ Page({
     recCharge:"2",
     recCost:"",
     manage:{},
-    record:{}
+    record:{},
+    systemInfo:{}
+  },
+  sys: function () {//判断系统
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          systemInfo: res,
+        })
+       
+      }
+    })
   },
   showTopTips: function(){
     var that = this;
@@ -89,8 +102,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var time = util.formatTimeNow(new Date());
-    var date = util.formatDate(new Date());
+    if (this.data.systemInfo.platform == "ios") {
+      var time = util.formatTimeNow(new Date());
+      var date = util.formatDate(new Date());
+      date = Date.parse(date.replace(/-/g, "/"));
+    } else{
+      var time = util.formatTimeNow(new Date());
+      var date = util.formatDate(new Date());
+    }
     
     var that=this;
     wx.request({
@@ -124,6 +143,7 @@ Page({
        
       }
     })
+    this.sys();
   },
 
   /**
