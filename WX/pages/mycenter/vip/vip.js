@@ -110,6 +110,11 @@ Page({
       url: '../vip/update/update',
     })
   },
+  goToMycenter: function (e) {//返回个人中心
+    wx.switchTab({
+      url: '../mycenter'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

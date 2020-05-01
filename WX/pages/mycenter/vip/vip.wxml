@@ -86,6 +86,7 @@
   <view class="weui-btn-area">
     <button class="weui-btn" type="default" bindtap="showTopTipsss">充值</button>
     <button class="weui-btn" type="default" bindtap="showTopTipss">修改个人信息</button>
+    <button class="weui-btn" type="default" bindtap="goToMycenter">返回个人中心</button>
   </view>
 
 </view>
