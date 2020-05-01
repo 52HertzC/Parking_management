@@ -8,6 +8,6 @@
 主要开发工具：eclipse+tomcat9.0+mysql+jdk1.8 
 ## 微信小程序系统介绍
 以下为微信小程序主要界面截图<br>
-<img src="https://github.com/52HertzC/Parking_management/blob/master/images/首页.jpg"  width="414"><br>
-<img src="https://github.com/52HertzC/Parking_management/blob/master/images/个人中心.jpg"  width="414"><br>
-<img src="https://github.com/52HertzC/Parking_management/blob/master/images/停车记录.jpg"  width="414">
+<img src="https://github.com/52HertzC/Parking_management/tree/master/images/首页.jpg"  width="414"><br>
+<img src="https://github.com/52HertzC/Parking_management/tree/master/images/个人中心.jpg"  width="414"><br>
+<img src="https://github.com/52HertzC/Parking_management/tree/master/images/停车记录.jpg"  width="414">
