@@ -42,8 +42,7 @@ App({
     code:"",
     urlsss: 'http://192.168.43.186:8888',//手机热点IP
     urlss: 'http://192.168.3.8:8888',//寝室IP
-    url: 'http://49.234.7.23:8080',//云服务器
-    urls:'http://localhost:8888',
+    url:'http://localhost:8888',
     sessionId:'',
     sessionCarId:'',
     isInput: false,  //判断是否停车
